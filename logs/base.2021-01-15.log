@@ -1,0 +1,39 @@
+2021-01-15 10:38:06.328 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.21.Final
+2021-01-15 10:38:06.559 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Starting YzcardmessageApplication on 3FBFOBOT04OG7VL with PID 10480 (D:\IDEASpace\yzcardmessage\target\classes started by Administrator in D:\IDEASpace\yzcardmessage)
+2021-01-15 10:38:06.560 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - The following profiles are active: dev
+2021-01-15 10:38:09.514 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 18091 (http)
+2021-01-15 10:38:09.534 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-18091"]
+2021-01-15 10:38:09.534 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-01-15 10:38:09.535 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-15 10:38:09.740 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-01-15 10:38:09.741 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2955 ms
+2021-01-15 10:38:11.390 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-15 10:38:11.589 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-01-15 10:38:11.664 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-18091"]
+2021-01-15 10:38:11.702 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 18091 (http) with context path ''
+2021-01-15 10:38:11.705 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Started YzcardmessageApplication in 6.487 seconds (JVM running for 9.903)
+2021-01-15 10:38:11.780 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Starting...
+2021-01-15 10:38:13.349 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Start completed.
+2021-01-15 10:38:13.528 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-01-15 10:38:23.532 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-01-15 10:38:33.533 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-01-15 10:38:43.535 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-01-15 17:02:29.668 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.21.Final
+2021-01-15 17:02:30.193 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Starting YzcardmessageApplication on 3FBFOBOT04OG7VL with PID 16608 (D:\IDEASpace\yzcardmessage\target\classes started by Administrator in D:\IDEASpace\yzcardmessage)
+2021-01-15 17:02:30.194 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - The following profiles are active: dev
+2021-01-15 17:02:33.447 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 18091 (http)
+2021-01-15 17:02:33.482 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-18091"]
+2021-01-15 17:02:33.483 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-01-15 17:02:33.483 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-15 17:02:33.688 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-01-15 17:02:33.689 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3287 ms
+2021-01-15 17:02:35.017 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-15 17:02:35.276 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-01-15 17:02:35.334 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-18091"]
+2021-01-15 17:02:35.364 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 18091 (http) with context path ''
+2021-01-15 17:02:35.368 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Started YzcardmessageApplication in 7.224 seconds (JVM running for 13.419)
+2021-01-15 17:02:35.430 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Starting...
+2021-01-15 17:02:37.512 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Start completed.
+2021-01-15 17:02:37.933 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-01-15 17:02:47.971 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-01-15 17:02:57.972 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0

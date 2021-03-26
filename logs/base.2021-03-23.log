@@ -1,0 +1,402 @@
+2021-03-23 15:06:22.985 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Starting YzcardmessageApplication on 3FBFOBOT04OG7VL with PID 7212 (D:\IDEASpace\yzcardmessage\target\classes started by Administrator in D:\IDEASpace\yzcardmessage)
+2021-03-23 15:06:22.989 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - The following profiles are active: dev
+2021-03-23 15:06:23.175 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.21.Final
+2021-03-23 15:06:24.702 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 18091 (http)
+2021-03-23 15:06:24.711 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-18091"]
+2021-03-23 15:06:24.712 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-03-23 15:06:24.712 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-03-23 15:06:24.821 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-03-23 15:06:24.822 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1728 ms
+2021-03-23 15:06:25.421 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-23 15:06:25.564 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-03-23 15:06:25.607 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-18091"]
+2021-03-23 15:06:25.631 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 18091 (http) with context path ''
+2021-03-23 15:06:25.633 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Started YzcardmessageApplication in 3.27 seconds (JVM running for 5.001)
+2021-03-23 15:06:25.651 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Starting...
+2021-03-23 15:06:26.618 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Start completed.
+2021-03-23 15:06:26.656 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:06:36.658 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:06:46.660 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:06:56.663 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:07:06.665 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:07:16.667 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:07:26.671 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:07:36.672 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:07:46.674 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:07:56.676 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:08:06.680 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:08:16.682 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:08:26.684 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:08:30.014 [scheduling-1] INFO  com.gmcc.yzcardmessage.service.impl.DeleteTradeTask - 开始执行定时任务:
+2021-03-23 15:08:30.015 [scheduling-1] INFO  com.gmcc.yzcardmessage.service.impl.DeleteTradeTask - 开始执行删除6天数据的定时任务
+2021-03-23 15:08:30.017 [scheduling-1] INFO  com.gmcc.yzcardmessage.service.impl.DeleteTradeTask - 数据转储到Bak表
+2021-03-23 15:08:30.181 [scheduling-1] ERROR org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.microsoft.sqlserver.jdbc.SQLServerException: 将截断字符串或二进制数据。
+### The error may exist in file [D:\IDEASpace\yzcardmessage\target\classes\mybatis-mapper\TradeInfoDao.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert  into ACCOUNT_GIVE_WALLET_gonganBak       select * from ACCOUNT_GIVE_WALLET_gongan       where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) < convert(varchar,getdate(),23)
+### Cause: com.microsoft.sqlserver.jdbc.SQLServerException: 将截断字符串或二进制数据。
+; 将截断字符串或二进制数据。; nested exception is com.microsoft.sqlserver.jdbc.SQLServerException: 将截断字符串或二进制数据。
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:104)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:91)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:441)
+	at com.sun.proxy.$Proxy52.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:62)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy53.insertTradeInfo(Unknown Source)
+	at com.gmcc.yzcardmessage.service.impl.TypicalTradeInfoServiceImpl.insertTradeInfo(TypicalTradeInfoServiceImpl.java:36)
+	at com.gmcc.yzcardmessage.service.impl.DeleteTradeTask.deleteTradeBeforeWeekData(DeleteTradeTask.java:36)
+	at com.gmcc.yzcardmessage.service.impl.DeleteTradeTask$$FastClassBySpringCGLIB$$aee23bc.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:367)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:118)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
+	at com.gmcc.yzcardmessage.service.impl.DeleteTradeTask$$EnhancerBySpringCGLIB$$faf83534.deleteTradeBeforeWeekData(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:93)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 将截断字符串或二进制数据。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:262)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1624)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:594)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:524)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7194)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:2979)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:248)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:223)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.execute(SQLServerPreparedStatement.java:505)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	... 33 common frames omitted
+2021-03-23 15:08:36.687 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:08:46.688 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:08:56.692 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:09:06.693 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:09:16.695 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:09:26.697 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:09:36.699 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:09:46.701 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:09:56.702 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:10:06.704 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:10:16.706 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:10:26.708 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:10:36.710 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:10:46.711 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:10:56.713 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:11:06.715 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:11:16.717 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:11:26.719 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:11:36.721 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:11:45.512 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.21.Final
+2021-03-23 15:11:45.519 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Starting YzcardmessageApplication on 3FBFOBOT04OG7VL with PID 9132 (D:\IDEASpace\yzcardmessage\target\classes started by Administrator in D:\IDEASpace\yzcardmessage)
+2021-03-23 15:11:45.524 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - The following profiles are active: dev
+2021-03-23 15:11:47.103 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 18091 (http)
+2021-03-23 15:11:47.116 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-18091"]
+2021-03-23 15:11:47.117 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-03-23 15:11:47.117 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-03-23 15:11:47.225 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-03-23 15:11:47.225 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1609 ms
+2021-03-23 15:11:47.882 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-23 15:11:48.028 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-03-23 15:11:48.073 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-18091"]
+2021-03-23 15:11:48.098 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 18091 (http) with context path ''
+2021-03-23 15:11:48.101 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Started YzcardmessageApplication in 3.454 seconds (JVM running for 5.113)
+2021-03-23 15:11:48.118 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Starting...
+2021-03-23 15:11:49.027 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Start completed.
+2021-03-23 15:11:49.065 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:11:59.066 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:12:09.069 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:12:19.071 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:12:29.074 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:12:30.015 [scheduling-1] INFO  com.gmcc.yzcardmessage.service.impl.DeleteTradeTask - 开始执行定时任务:
+2021-03-23 15:12:30.015 [scheduling-1] INFO  com.gmcc.yzcardmessage.service.impl.DeleteTradeTask - 开始执行删除6天数据的定时任务
+2021-03-23 15:12:30.020 [scheduling-1] INFO  com.gmcc.yzcardmessage.service.impl.DeleteTradeTask - 数据转储到Bak表
+2021-03-23 15:12:30.025 [scheduling-1] INFO  com.gmcc.yzcardmessage.service.impl.DeleteTradeTask - 删除正式表之前的数据
+2021-03-23 15:12:30.026 [scheduling-1] INFO  com.gmcc.yzcardmessage.service.impl.DeleteTradeTask - 定时任务执行完成
+2021-03-23 15:12:39.077 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:12:49.079 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:12:59.083 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:13:09.085 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 15:13:19.087 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 16:55:17.137 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.21.Final
+2021-03-23 16:55:17.267 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Starting YzcardmessageApplication on 3FBFOBOT04OG7VL with PID 11688 (D:\IDEASpace\yzcardmessage\target\classes started by Administrator in D:\IDEASpace\yzcardmessage)
+2021-03-23 16:55:17.267 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - The following profiles are active: prod
+2021-03-23 16:55:22.102 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 18091 (http)
+2021-03-23 16:55:22.113 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-18091"]
+2021-03-23 16:55:22.113 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-03-23 16:55:22.114 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-03-23 16:55:22.252 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-03-23 16:55:22.253 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4846 ms
+2021-03-23 16:55:23.118 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-23 16:55:23.300 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-03-23 16:55:23.355 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-18091"]
+2021-03-23 16:55:23.396 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 18091 (http) with context path ''
+2021-03-23 16:55:23.399 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Started YzcardmessageApplication in 7.194 seconds (JVM running for 9.479)
+2021-03-23 16:55:23.447 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Starting...
+2021-03-23 16:55:34.718 [main] ERROR com.zaxxer.hikari.pool.HikariPool - HikariCP - Exception during pool initialization.
+com.microsoft.sqlserver.jdbc.SQLServerException: 通过端口 1433 连接到主机 192.168.1.130 的 TCP/IP 连接失败。错误:“connect timed out。请验证连接属性。确保 SQL Server 的实例正在主机上运行，且在此端口接受 TCP/IP 连接，还要确保防火墙没有阻止到此端口的 TCP 连接。”。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:234)
+	at com.microsoft.sqlserver.jdbc.SQLServerException.ConvertConnectExceptionToSQLServerException(SQLServerException.java:285)
+	at com.microsoft.sqlserver.jdbc.SocketFinder.findSocket(IOBuffer.java:2431)
+	at com.microsoft.sqlserver.jdbc.TDSChannel.open(IOBuffer.java:656)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:2472)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:2142)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:1993)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:1164)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:760)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:358)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:477)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:560)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:158)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:116)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:79)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67)
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:337)
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:86)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:62)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	at com.sun.proxy.$Proxy52.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy53.getTradeInfo(Unknown Source)
+	at com.gmcc.yzcardmessage.service.impl.TypicalTradeInfoServiceImpl.getTradeInfo(TypicalTradeInfoServiceImpl.java:21)
+	at com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl.sendGongAnTradeMessage(SendTradeMessageImpl.java:47)
+	at com.gmcc.yzcardmessage.YzcardmessageApplication.run(YzcardmessageApplication.java:22)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:784)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:768)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:322)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at com.gmcc.yzcardmessage.YzcardmessageApplication.main(YzcardmessageApplication.java:16)
+2021-03-23 16:55:34.750 [main] INFO  org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-03-23 16:55:34.774 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: Failed to execute CommandLineRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:787)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:768)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:322)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at com.gmcc.yzcardmessage.YzcardmessageApplication.main(YzcardmessageApplication.java:16)
+Caused by: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is com.microsoft.sqlserver.jdbc.SQLServerException: 通过端口 1433 连接到主机 192.168.1.130 的 TCP/IP 连接失败。错误:“connect timed out。请验证连接属性。确保 SQL Server 的实例正在主机上运行，且在此端口接受 TCP/IP 连接，还要确保防火墙没有阻止到此端口的 TCP 连接。”。
+### The error may exist in file [D:\IDEASpace\yzcardmessage\target\classes\mybatis-mapper\TradeInfoDao.xml]
+### The error may involve com.gmcc.yzcardmessage.dao.TradeInfoDao.getTradeInfo
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is com.microsoft.sqlserver.jdbc.SQLServerException: 通过端口 1433 连接到主机 192.168.1.130 的 TCP/IP 连接失败。错误:“connect timed out。请验证连接属性。确保 SQL Server 的实例正在主机上运行，且在此端口接受 TCP/IP 连接，还要确保防火墙没有阻止到此端口的 TCP 连接。”。
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:96)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:441)
+	at com.sun.proxy.$Proxy52.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy53.getTradeInfo(Unknown Source)
+	at com.gmcc.yzcardmessage.service.impl.TypicalTradeInfoServiceImpl.getTradeInfo(TypicalTradeInfoServiceImpl.java:21)
+	at com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl.sendGongAnTradeMessage(SendTradeMessageImpl.java:47)
+	at com.gmcc.yzcardmessage.YzcardmessageApplication.run(YzcardmessageApplication.java:22)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:784)
+	... 5 common frames omitted
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is com.microsoft.sqlserver.jdbc.SQLServerException: 通过端口 1433 连接到主机 192.168.1.130 的 TCP/IP 连接失败。错误:“connect timed out。请验证连接属性。确保 SQL Server 的实例正在主机上运行，且在此端口接受 TCP/IP 连接，还要确保防火墙没有阻止到此端口的 TCP 连接。”。
+### The error may exist in file [D:\IDEASpace\yzcardmessage\target\classes\mybatis-mapper\TradeInfoDao.xml]
+### The error may involve com.gmcc.yzcardmessage.dao.TradeInfoDao.getTradeInfo
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is com.microsoft.sqlserver.jdbc.SQLServerException: 通过端口 1433 连接到主机 192.168.1.130 的 TCP/IP 连接失败。错误:“connect timed out。请验证连接属性。确保 SQL Server 的实例正在主机上运行，且在此端口接受 TCP/IP 连接，还要确保防火墙没有阻止到此端口的 TCP 连接。”。
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:149)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	... 16 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is com.microsoft.sqlserver.jdbc.SQLServerException: 通过端口 1433 连接到主机 192.168.1.130 的 TCP/IP 连接失败。错误:“connect timed out。请验证连接属性。确保 SQL Server 的实例正在主机上运行，且在此端口接受 TCP/IP 连接，还要确保防火墙没有阻止到此端口的 TCP 连接。”。
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:82)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67)
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:337)
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:86)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:62)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	... 22 common frames omitted
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 通过端口 1433 连接到主机 192.168.1.130 的 TCP/IP 连接失败。错误:“connect timed out。请验证连接属性。确保 SQL Server 的实例正在主机上运行，且在此端口接受 TCP/IP 连接，还要确保防火墙没有阻止到此端口的 TCP 连接。”。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:234)
+	at com.microsoft.sqlserver.jdbc.SQLServerException.ConvertConnectExceptionToSQLServerException(SQLServerException.java:285)
+	at com.microsoft.sqlserver.jdbc.SocketFinder.findSocket(IOBuffer.java:2431)
+	at com.microsoft.sqlserver.jdbc.TDSChannel.open(IOBuffer.java:656)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:2472)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:2142)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:1993)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:1164)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:760)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:358)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:477)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:560)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:158)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:116)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:79)
+	... 32 common frames omitted
+2021-03-23 16:55:34.777 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2021-03-23 16:55:34.778 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-03-23 16:55:54.070 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Starting YzcardmessageApplication on 3FBFOBOT04OG7VL with PID 10652 (D:\IDEASpace\yzcardmessage\target\classes started by Administrator in D:\IDEASpace\yzcardmessage)
+2021-03-23 16:55:54.074 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - The following profiles are active: dev
+2021-03-23 16:55:54.265 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.21.Final
+2021-03-23 16:55:55.657 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 18091 (http)
+2021-03-23 16:55:55.666 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-18091"]
+2021-03-23 16:55:55.667 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-03-23 16:55:55.667 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-03-23 16:55:55.771 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-03-23 16:55:55.772 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1569 ms
+2021-03-23 16:55:56.433 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-23 16:55:56.579 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-03-23 16:55:56.622 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-18091"]
+2021-03-23 16:55:56.650 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 18091 (http) with context path ''
+2021-03-23 16:55:56.653 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Started YzcardmessageApplication in 3.224 seconds (JVM running for 4.983)
+2021-03-23 16:55:56.671 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Starting...
+2021-03-23 16:55:58.073 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Start completed.
+2021-03-23 16:55:58.141 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 16:56:08.144 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 16:56:18.145 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 16:56:28.147 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 16:56:38.149 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 16:56:48.153 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 16:56:58.156 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 16:57:08.157 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 16:57:18.159 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:57:27.325 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:57:37.326 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:57:47.328 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:57:57.330 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:58:07.333 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:58:17.335 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:58:27.338 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:58:37.340 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:58:47.342 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:58:57.344 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:59:07.346 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:59:17.348 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:59:27.351 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:59:37.352 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:59:47.354 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 16:59:57.355 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:00:07.357 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:00:17.358 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:00:27.360 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:00:37.362 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:00:47.363 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:00:57.366 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:01:07.367 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:01:17.370 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:01:27.371 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:01:37.374 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:01:47.376 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:01:57.378 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:02:07.380 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:02:17.381 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:02:27.383 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-22 17:02:37.384 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 08:49:50.485 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.21.Final
+2021-03-23 08:49:50.504 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Starting YzcardmessageApplication on 3FBFOBOT04OG7VL with PID 8972 (D:\IDEASpace\yzcardmessage\target\classes started by Administrator in D:\IDEASpace\yzcardmessage)
+2021-03-23 08:49:50.511 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - The following profiles are active: dev
+2021-03-23 08:49:52.198 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 18091 (http)
+2021-03-23 08:49:52.207 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-18091"]
+2021-03-23 08:49:52.208 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-03-23 08:49:52.208 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-03-23 08:49:52.312 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-03-23 08:49:52.312 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1694 ms
+2021-03-23 08:49:54.210 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-23 08:49:54.674 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-03-23 08:49:54.741 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-18091"]
+2021-03-23 08:49:54.768 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 18091 (http) with context path ''
+2021-03-23 08:49:54.772 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Started YzcardmessageApplication in 5.416 seconds (JVM running for 11.911)
+2021-03-23 08:49:54.802 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Starting...
+2021-03-23 08:49:56.279 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Start completed.
+2021-03-23 08:49:56.478 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 08:50:06.480 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 08:50:16.482 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 08:50:26.484 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 08:50:36.485 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 09:04:35.127 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.21.Final
+2021-03-23 09:04:35.377 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Starting YzcardmessageApplication on 3FBFOBOT04OG7VL with PID 11784 (D:\IDEASpace\yzcardmessage\target\classes started by Administrator in D:\IDEASpace\yzcardmessage)
+2021-03-23 09:04:35.378 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - The following profiles are active: dev
+2021-03-23 09:04:41.300 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 18091 (http)
+2021-03-23 09:04:41.335 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-18091"]
+2021-03-23 09:04:41.336 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-03-23 09:04:41.336 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-03-23 09:04:41.669 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-03-23 09:04:41.670 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5976 ms
+2021-03-23 09:04:42.958 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-23 09:04:43.279 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-03-23 09:04:43.335 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-18091"]
+2021-03-23 09:04:43.368 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 18091 (http) with context path ''
+2021-03-23 09:04:43.372 [main] INFO  com.gmcc.yzcardmessage.YzcardmessageApplication - Started YzcardmessageApplication in 10.31 seconds (JVM running for 16.336)
+2021-03-23 09:04:43.432 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Starting...
+2021-03-23 09:04:45.717 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariCP - Start completed.
+2021-03-23 09:04:46.315 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 09:04:56.369 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0
+2021-03-23 09:05:06.375 [main] INFO  com.gmcc.yzcardmessage.service.impl.SendTradeMessageImpl - 本次记录待发送条数:0

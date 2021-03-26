@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmcc.yzcardmessage.dao.master.TradeInfoMasterDao">
+
+
+    <!-- 两张表的数据同时插入一张表中 ACCOUNT_GIVE_WALLET_gongan  -->
+    <select id="getTradeInfo" resultType="com.gmcc.yzcardmessage.entity.AccountWallet">
+       <!--每次查询2000条记录   -->
+        SELECT  top 1000  CARD_NO  AS cardNo,TRANSACT_TIME AS transactTime,COMPANY_CODE AS companyCode,LINE_CODE AS lineCode,BUS_CODE AS busCode,(case when TRANSACT_TYPE='unionpay' THEN  DRIVER_CARD_NO else  SUBSTRING(DRIVER_CARD_NO, 12, 18) end)  AS deviceCardNo,DEVICE_CODE AS deviceCode,id AS id,CARD_CATEGORY as cardCategory,   TRANSACT_TYPE   as  transatType  from ACCOUNT_GIVE_WALLET_gongan
+        where FINISH = 0
+    </select>
+
+    <!-- 如果上传成功,更新标志位 -->
+   <update id="updateTradeFlag" >
+       update ACCOUNT_GIVE_WALLET_gongan
+       set FINISH=1,FINISH_TIME=getdate()
+       WHERE id in
+       <foreach collection="idList" item="item" open="(" close=")" separator="," >
+           #{item}
+       </foreach>
+   </update>
+
+
+<!--   主表历史数据插入到Bak   -->
+    <insert id="insertTradeInfo" >
+      insert  into ACCOUNT_GIVE_WALLET_gonganBak
+      select * from ACCOUNT_GIVE_WALLET_gongan
+      where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
+    </insert>
+
+    <!-- 删除7天前的交易数据-->
+    <delete id="deleteTradeInfo">
+        delete from ACCOUNT_GIVE_WALLET_gonganBak
+        where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,DATEADD(d, DATEDIFF(d,0,getdate()), -7),23)
+    </delete>
+
+    <delete id="deleteTradeOldInfo">
+        delete from ACCOUNT_GIVE_WALLET_gongan
+        where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
+    </delete>
+
+</mapper>
