@@ -122,9 +122,6 @@ public class SendTradeMessageImpl implements SendTradeMessage {
                         logger.info("发送数据:\n" + sendMap);
                         logger.info("返回的结果为：" + result);
                     } catch (IOException e) {
-
-                        idList.add(accountWallet.getId());
-
                         e.printStackTrace();
                     //    throw new IOException(e.getMessage());
                     }
