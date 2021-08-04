@@ -2,6 +2,8 @@ package com.gmcc.yzcardmessage.service.impl;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.gmcc.yzcardmessage.entity.AccountWallet;
 
 import com.gmcc.yzcardmessage.service.SendTradeMessage;
@@ -76,38 +78,26 @@ public class SendTradeMessageImpl implements SendTradeMessage {
                     //车辆号
                     sendMap.put("busCode", accountWallet.getBusCode());
                     String Transat_Type = accountWallet.getTransatType().toString();
-                    //驾驶员卡号
-                    if(Transat_Type.equals("unionpay")){
-                        sendMap.put("driverCardNo", driverHeadCode + accountWallet.getDeviceCardNo());    //银联ODA司机卡号8位
-                    }else {
-                        sendMap.put("driverCardNo", driverHeadCode + SHA256SignUtil.covert(accountWallet.getDeviceCardNo()));
-                    }
+
+                    sendMap.put("driverCardNo",  accountWallet.getDeviceCardNo());    //驾驶员卡号
+
+
 
                         //乘车人卡号(01是正常卡  07是交通部卡)
-                        if (accountWallet.getCardCategory().equals("01")) {
-                            sendMap.put("cardNo", cityCode + SHA256SignUtil.covert(accountWallet.getCardNo()));
-                        } else {
-                            if(Transat_Type.equals("unionpay")){//银联卡去掉后面的
-                                sendMap.put("cardNo",accountWallet.getCardNo().replaceAll("F+$", ""));
-                            }else {
-                                sendMap.put("cardNo", accountWallet.getCardNo());
-                            }
-                        }
+//                        if (accountWallet.getCardCategory().equals("01")) {
+//                            sendMap.put("cardNo", cityCode + SHA256SignUtil.covert(accountWallet.getCardNo()));
+//                        } else {
+//                            if(Transat_Type.equals("unionpay")){//银联卡去掉后面的
+//                                sendMap.put("cardNo",accountWallet.getCardNo().replaceAll("F+$", ""));
+//                            }else {
+//                                sendMap.put("cardNo", accountWallet.getCardNo());
+//                            }
+//                        }
+                    //直接获取卡号
+                    sendMap.put("cardNo", accountWallet.getCardNo());
 
-                    //消费类型 qrcode 二维码 busCard 实体卡 unionpay 云闪付
-                    if(Transat_Type.equals("wxCode")){
-                        sendMap.put("consumeType","wxCode");
-                    }else if(Transat_Type.equals("alipayCode")){
-                        sendMap.put("consumeType","alipayCode");
-                    }else if(Transat_Type.equals("zyCode")){
-                        sendMap.put("consumeType","zyCode");
-                    }else if(Transat_Type.equals("unionPayCode")){
-                        sendMap.put("consumeType","unionPayCode");
-                    }else if(Transat_Type.equals("unionpay")){
-                        sendMap.put("consumeType","unionpay");
-                    }else {
-                        sendMap.put("consumeType", "busCard");
-                    }
+                    //consumeType：       脱机闪付 电子现金卡    unionCardPay      银联云闪付      unionPay   银联联机二维码    unionAppPay  银联脱机二维码 unionCodePay  支付宝二维码 alipayCode  云雷二维码 ： yunleiCodePay    实体卡：busCard
+                    sendMap.put("consumeType",accountWallet.getTransatType());
 
                     // 生成签名
                     byte[] sign256 = SHA256SignUtil.sign256(JSON.toJSONString(sendMap));
@@ -123,15 +113,15 @@ public class SendTradeMessageImpl implements SendTradeMessage {
                         logger.info("返回的结果为：" + result);
                     } catch (IOException e) {
                         e.printStackTrace();
-                    //    throw new IOException(e.getMessage());
+
                     }
 
                     if(result!="") {
                         Map<String, Object> resultMap = JSON.parseObject(result);
 
-                        //判断是是否接受成功
-
-                        if (resultMap.get("code").toString().equals("0")) {
+                            //判断是是否接受成功
+                            JSONObject jsonObject = JSONObject.parseObject(resultMap.get("msgheader").toString());
+                            if (jsonObject.get("result").toString().equals("0000")) {
                             idList.add(accountWallet.getId());
                         }
                     }
