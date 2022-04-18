@@ -29,12 +29,12 @@ public class SHA256SignUtil {
     public static void main(String[] args) throws InvalidKeyException,
             NoSuchAlgorithmException, InvalidKeySpecException,
             SignatureException, UnsupportedEncodingException {
-/*
+
         PublicKey publicKey = restorePublicKey(decodeBase64(PUBLIC_KEY));
         // 待签名内容
         Map<String, Object> map = new HashMap<String,Object>();
 //        map.put("transactTime", "20201225111022");
-//        map.put("uploadTime", "20201225111522");
+
 //        map.put("branchCompany", "扬州");
 //        map.put("lineCode", "123");
 //        map.put("busCode", "123");
@@ -43,33 +43,31 @@ public class SHA256SignUtil {
 //        map.put("startStationName", "123");
 //        map.put("endStationName", "123");
 //        map.put("direction", "123");
-        map.put("transactTime", "2020-12-25 12:28:50");
-        map.put("uploadTime", "20201225155302");
-        map.put("branchCompany", "00000014");
-        map.put("lineCode", "00000660");
-        map.put("busCode", "00104248");
-        map.put("driverCardNo", "0002250000000A29235");
+
+        map.put("uploadTime", "20210730133347");
+        map.put("branchCompany", "01");
+        map.put("lineCode", "0008");
+        map.put("busCode", "030688");
+        map.put("transactTime", "2021-06-28 11:47:48");
+        map.put("driverCardNo", "12244748");
         map.put("consumeType", "busCard");
+        map.put("cardNo", "12228700");
 
-//        map.put("testOne","xinpianka");
-//        map.put("xinpianka","abc-123");
-
-
-//        map.put("consumeType", "123");
+        //        map.put("xinpianka","abc-123");
+       //    map.put("consumeType", "123");
         // 签名
         byte[] sign256 = sign256(JSON.toJSONString(map));
         String sign = encodeBase64(sign256);
         System.out.println("sign=" + sign);
 
         // 验签
-        boolean result = verify256(JSON.toJSONString(map), decodeBase64(sign), publicKey);*/
+        boolean result = verify256(JSON.toJSONString(map), decodeBase64(sign), publicKey);
 
+//        String str = "62261012121121099FGHJKKLOP";
+//        String t = str.replaceAll("FGHJKKLOP+$", "");
+//        System.out.println(t);
 
-        String str = "62261012121121099F";
-        String t = str.replaceAll("F+$", "");
-        System.out.println(t);
-
-       // System.out.println(result);
+        System.out.println(result);
 
     }
 
@@ -84,6 +82,8 @@ public class SHA256SignUtil {
         signature.update(data.getBytes(ENCODING));
         return signature.sign();
     }
+
+
 
     /**
      * SHA256WithRSA 验证签名
@@ -199,11 +199,21 @@ public class SHA256SignUtil {
         return number;
     }
 
-
-
-
-
-
+    public static int covertTmp(String content1){
+        int number = 0;
+        String [] HighLetter = {"A","B","C","D","E","F"};
+        Map<String,Integer>  map = new HashMap<>();
+        for(int i = 0; i <= 9;i++){
+            map.put(i+"",i);
+        }
+        for(int j=10;j<HighLetter.length+10;j++){
+            map.put(HighLetter[j-10],j);
+        }
+        for(int i=0; i <=9; i++){
+            map.put(i+"",i);
+        }
+        return  number;
+    }
 
 
 

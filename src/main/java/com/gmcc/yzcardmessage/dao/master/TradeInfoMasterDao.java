@@ -1,7 +1,7 @@
 package com.gmcc.yzcardmessage.dao.master;
 
 
-import com.gmcc.yzcardmessage.entity.AccountWallet;
+import com.gmcc.yzcardmessage.entity.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,7 +13,6 @@ import java.util.List;
 
 @Mapper
 public interface TradeInfoMasterDao {
-
 
     //获取实体卡交易数据每次2000条
     public List<AccountWallet>  getTradeInfo();
@@ -32,6 +31,22 @@ public interface TradeInfoMasterDao {
 
     //删除主表历史数据
     public void deleteTradeOldInfo();
+
+    //查询车辆机具映射关系
+    public List<PosBusinfo> getVechileDeviceMappingData();
+
+    //车载机线路映射关系
+    public List<BusLineinfo> getDeviceRouteMappingData();
+
+    //车辆信息
+    public List<Businfo> getVechileInfoData();
+
+
+    //IC卡信息Cardinfo
+    public List<Cardinfo> getIcCardData(int num);
+
+    //IC卡数据上送后更新
+    public void updateCardInfoFlag(List<String> ids);
 
 
 

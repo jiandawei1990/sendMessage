@@ -1,7 +1,5 @@
 package com.gmcc.yzcardmessage.service.impl;
 
-
-
 import com.gmcc.yzcardmessage.dao.master.TradeInfoMasterDao;
 import com.gmcc.yzcardmessage.entity.AccountWallet;
 import com.gmcc.yzcardmessage.service.TypicalTradeInfoService;
@@ -13,14 +11,8 @@ import java.util.List;
 @Service
 public class TypicalTradeInfoServiceImpl implements TypicalTradeInfoService {
 
-
-
     @Autowired
     TradeInfoMasterDao tradeInfoMasterDao;
-
-
-
-
     @Override
     public List<AccountWallet> getTradeInfo() {
         return tradeInfoMasterDao.getTradeInfo();
@@ -45,6 +37,5 @@ public class TypicalTradeInfoServiceImpl implements TypicalTradeInfoService {
     public void deleteTradeOldInfo() {
         tradeInfoMasterDao.deleteTradeOldInfo();
     }
-
 
 }

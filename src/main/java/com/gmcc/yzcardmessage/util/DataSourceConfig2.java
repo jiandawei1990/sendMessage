@@ -16,6 +16,10 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 
+
+/**
+ * 从数据源
+ */
 @Configuration
 @MapperScan(basePackages = "com.gmcc.yzcardmessage.dao.slave", sqlSessionFactoryRef = "slaveSqlSessionFactory")
 public class DataSourceConfig2 {
@@ -35,6 +39,7 @@ public class DataSourceConfig2 {
         bean.setDataSource(datasource);
         bean.setMapperLocations(
                 new PathMatchingResourcePatternResolver().getResources("classpath*:/mybatis-mapper/slave/*.xml"));
+
         return bean.getObject();
     }
 

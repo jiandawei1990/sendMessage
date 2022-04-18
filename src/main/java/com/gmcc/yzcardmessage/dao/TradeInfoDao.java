@@ -12,8 +12,7 @@ import java.util.List;
  */
 
 @Mapper
-public interface TradeInfoDao {
-
+public interface  TradeInfoDao {
 
     //获取实体卡交易数据每次2000条
     public List<AccountWallet>  getTradeInfo();
@@ -32,6 +31,9 @@ public interface TradeInfoDao {
 
     //删除主表历史数据
     public void deleteTradeOldInfo();
+
+
+
 
 
 

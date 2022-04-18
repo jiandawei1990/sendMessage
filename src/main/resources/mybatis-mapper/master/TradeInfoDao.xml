@@ -6,13 +6,13 @@
     <!-- 两张表的数据同时插入一张表中 ACCOUNT_GIVE_WALLET_gongan  -->
     <select id="getTradeInfo" resultType="com.gmcc.yzcardmessage.entity.AccountWallet">
        <!--每次查询2000条记录   -->
-        SELECT  top 1000  CARD_NO  AS cardNo,TRANSACT_TIME AS transactTime,COMPANY_CODE AS companyCode,LINE_CODE AS lineCode,BUS_CODE AS busCode,(case when TRANSACT_TYPE='unionpay' THEN  DRIVER_CARD_NO else  SUBSTRING(DRIVER_CARD_NO, 12, 18) end)  AS deviceCardNo,DEVICE_CODE AS deviceCode,id AS id,CARD_CATEGORY as cardCategory,   TRANSACT_TYPE   as  transatType  from ACCOUNT_GIVE_WALLET_gongan
+        SELECT  top 1000  cardNo  AS cardNo,transactTime AS transactTime,companyCode AS companyCode,lineCode AS lineCode,busCode AS busCode, driverCardNo  AS deviceCardNo,deviceCode AS deviceCode,id AS id,   consumeType   as  transatType, startStationName as startStationName, endStationName as  endStationName from Trade_Mx
         where FINISH = 0
     </select>
 
     <!-- 如果上传成功,更新标志位 -->
    <update id="updateTradeFlag" >
-       update ACCOUNT_GIVE_WALLET_gongan
+       update Trade_Mx
        set FINISH=1,FINISH_TIME=getdate()
        WHERE id in
        <foreach collection="idList" item="item" open="(" close=")" separator="," >
@@ -20,23 +20,39 @@
        </foreach>
    </update>
 
+    <!--车辆机具映射关系-->
+    <select id="getVechileDeviceMappingData"  resultType="com.gmcc.yzcardmessage.entity.PosBusinfo">
+        SELECT posmachineCode,busCode, busName
+        FROM view_bus_device
+    </select>
 
-<!--   主表历史数据插入到Bak   -->
+    <!--车载机线路映射关系-->
+    <select id="getDeviceRouteMappingData"  resultType="com.gmcc.yzcardmessage.entity.BusLineinfo">
+          SELECT lineName,lineCode,posmachineCode
+          FROM view_route_device
+    </select>
+
+    <!-- 车辆信息-->
+    <select id="getVechileInfoData"  resultType="com.gmcc.yzcardmessage.entity.Businfo">
+     SELECT busName,busCode
+     FROM view_bus_info
+    </select>
+
+<!--   主表历史数据插入到Bak-->
     <insert id="insertTradeInfo" >
-      insert  into ACCOUNT_GIVE_WALLET_gonganBak
-      select * from ACCOUNT_GIVE_WALLET_gongan
+      insert  into Trade_MxBak
+      select * from Trade_Mx
       where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
     </insert>
 
-    <!-- 删除7天前的交易数据-->
     <delete id="deleteTradeInfo">
-        delete from ACCOUNT_GIVE_WALLET_gonganBak
+        delete from Trade_MxBak
         where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,DATEADD(d, DATEDIFF(d,0,getdate()), -7),23)
     </delete>
 
     <delete id="deleteTradeOldInfo">
-        delete from ACCOUNT_GIVE_WALLET_gongan
-        where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
+        delete from Trade_Mx
+        where  FINISH = '1' and convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
     </delete>
 
 </mapper>

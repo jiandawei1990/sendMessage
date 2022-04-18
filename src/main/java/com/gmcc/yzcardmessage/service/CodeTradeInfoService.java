@@ -29,5 +29,4 @@ public interface CodeTradeInfoService {
     //删除正式表数据
     public  void deleteTradeOldInfo();
 
-
 }

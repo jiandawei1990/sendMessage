@@ -37,4 +37,6 @@ public class CodeTradeInfoServiceImpl implements CodeTradeInfoService {
     public void deleteTradeOldInfo() {
         tradeInfoSlaveDao.deleteTradeOldInfo();
     }
+
+
 }

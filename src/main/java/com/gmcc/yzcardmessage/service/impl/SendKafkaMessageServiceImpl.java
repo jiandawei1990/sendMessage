@@ -37,7 +37,6 @@ public class SendKafkaMessageServiceImpl implements SendKafkaMessageService {
 
     @Override
     public void sendKafkaTradeMessage() throws Exception {
-
         String username = "tjck";
         String password = "tjck@%&#*$pwd";
         String topic = "bd-etl-sync_tjck_posp"; // 目标topic

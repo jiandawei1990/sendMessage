@@ -1,9 +1,9 @@
 package com.gmcc.yzcardmessage.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.gmcc.yzcardmessage.entity.AccountWallet;
 import com.gmcc.yzcardmessage.service.SendCodeMessage;
-import com.gmcc.yzcardmessage.service.TypicalTradeInfoService;
 import com.gmcc.yzcardmessage.util.HttpUtil;
 import com.gmcc.yzcardmessage.util.SHA256SignUtil;
 import org.slf4j.Logger;
@@ -20,10 +20,8 @@ public class SendCodeMessageImpl implements SendCodeMessage {
 
         private static Logger logger = LoggerFactory.getLogger(SendCodeMessageImpl.class);
 
-        @Value("${send.url}")
-        private  String sendUrl;
-
-
+        @Value("${send.url1}")
+        private  String sendUrl1;
 
         @Autowired
         private  CodeTradeInfoServiceImpl codeTradeInfoService;
@@ -47,14 +45,13 @@ public class SendCodeMessageImpl implements SendCodeMessage {
                 List<AccountWallet> accountWalletList = codeTradeInfoService.getTradeInfo();
                 logger.info("从本次记录待发送条数:"+accountWalletList.size());
 
-                //如果没有数据的话，10秒后在进行数据处理
+                //如果没有数据的话，5秒后在进行数据处理
                 if(accountWalletList.size()==0){
-                    Thread.sleep(10000);
+                    Thread.sleep(5000);
                 }
 
                 // 保持有数据的情况下发送数据
                 if (accountWalletList.size() > 0) {
-
 
                     for (AccountWallet accountWallet : accountWalletList) {
                         Map<String, Object> sendMap = new HashMap<String,Object>();
@@ -69,42 +66,22 @@ public class SendCodeMessageImpl implements SendCodeMessage {
 
                         //线路号
                         sendMap.put("lineCode", accountWallet.getLineCode());
-
                         //车辆号
                         sendMap.put("busCode", accountWallet.getBusCode());
                         String Transat_Type = accountWallet.getTransatType().toString();
                         //驾驶员卡号
-                        if(Transat_Type.equals("unionpay")){
-                            sendMap.put("driverCardNo", driverHeadCode + accountWallet.getDeviceCardNo());    //银联ODA司机卡号8位
-                        }else {
-                            sendMap.put("driverCardNo", driverHeadCode + SHA256SignUtil.covert(accountWallet.getDeviceCardNo()));
-                        }
+                        sendMap.put("driverCardNo",  accountWallet.getDeviceCardNo());    //驾驶员卡号
 
-                        //乘车人卡号(01是正常卡  07是交通部卡)
-                        if (accountWallet.getCardCategory().equals("01")) {
-                            sendMap.put("cardNo", cityCode + SHA256SignUtil.covert(accountWallet.getCardNo()));
-                        } else {
-                            if(Transat_Type.equals("unionpay")){//银联卡去掉后面的
-                                sendMap.put("cardNo",accountWallet.getCardNo().replaceAll("F+$", ""));
-                            }else {
-                                sendMap.put("cardNo", accountWallet.getCardNo());
-                            }
-                        }
+                        //直接获取卡号
+                        sendMap.put("cardNo",accountWallet.getCardNo());
+                        //consumeType：       脱机闪付 电子现金卡    unionCardPay      银联云闪付      unionPay   银联联机二维码    unionAppPay  银联脱机二维码 unionCodePay  支付宝二维码 alipayCode  云雷二维码 ： yunleiCodePay    实体卡：busCard
 
-                        //消费类型 qrcode 二维码 busCard 实体卡 unionpay 云闪付
-                        if(Transat_Type.equals("wxCode")){
-                            sendMap.put("consumeType","wxCode");
-                        }else if(Transat_Type.equals("alipayCode")){
-                            sendMap.put("consumeType","alipayCode");
-                        }else if(Transat_Type.equals("zyCode")){
-                            sendMap.put("consumeType","zyCode");
-                        }else if(Transat_Type.equals("unionPayCode")){
-                            sendMap.put("consumeType","unionPayCode");
-                        }else if(Transat_Type.equals("unionpay")){
-                            sendMap.put("consumeType","unionpay");
-                        }else {
-                            sendMap.put("consumeType", "busCard");
-                        }
+                        //上站点
+                        sendMap.put("startStationName",accountWallet.getStartStationName());
+                        //下站点
+                        sendMap.put("endStationName",accountWallet.getEndStationName());//消费类型 qrcode 二维码 busCard 实体卡 unionpay 云闪付 支付宝
+                        sendMap.put("consumeType",accountWallet.getTransatType());
+
 
                         // 生成签名
                         byte[] sign256 = SHA256SignUtil.sign256(JSON.toJSONString(sendMap));
@@ -115,7 +92,7 @@ public class SendCodeMessageImpl implements SendCodeMessage {
 
                         String result = "";
                         try {
-                            result = HttpUtil.sendPostForGongAn(sendUrl, sendMap);
+                            result = HttpUtil.sendPostForGongAn(sendUrl1, sendMap);
                             logger.info("发送数据:\n" + sendMap);
                             logger.info("返回的结果为：" + result);
                         } catch (IOException e) {
@@ -127,14 +104,13 @@ public class SendCodeMessageImpl implements SendCodeMessage {
                             Map<String, Object> resultMap = JSON.parseObject(result);
 
                             //判断是是否接受成功
-
-                            if (resultMap.get("code").toString().equals("0")) {
+                            JSONObject jsonObject = JSONObject.parseObject(resultMap.get("msgheader").toString());
+                            if (jsonObject.get("result").toString().equals("0000")) {
                                 idList.add(accountWallet.getId());
                             }
                         }
                     }
-
-                    logger.info("update");
+                    logger.info("进行本次上送标志更新");
                     //批量更新发送的数据
                     if(idList.size()>0) {
                         codeTradeInfoService.updateTradeFlag(idList);
@@ -144,12 +120,6 @@ public class SendCodeMessageImpl implements SendCodeMessage {
                     }
                 }
             }
-
-
         }
-
-
-
-
     }
 

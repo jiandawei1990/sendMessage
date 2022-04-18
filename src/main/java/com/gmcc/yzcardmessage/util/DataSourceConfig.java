@@ -13,6 +13,10 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 
+
+/**
+ * 主数据源
+ */
 @Configuration
 @MapperScan(basePackages = "com.gmcc.yzcardmessage.dao.master", sqlSessionFactoryRef = "masterSqlSessionFactory")
 public class DataSourceConfig {
@@ -44,6 +48,7 @@ public class DataSourceConfig {
         return bean.getObject();
     }
 
+
     @Bean("masterSqlSessionTemplate")
     // 表示这个数据源是默认数据源
     @Primary
@@ -52,6 +57,13 @@ public class DataSourceConfig {
     {
         return new SqlSessionTemplate(sessionFactory);
     }
+
+    @Primary
+    public SqlSessionTemplate test2SqlSessionTemplate(
+            @Qualifier("masterSqlSessionFactory") SqlSessionFactory sessionFactory){
+        return new SqlSessionTemplate(sessionFactory);
+    }
+
 
 
 

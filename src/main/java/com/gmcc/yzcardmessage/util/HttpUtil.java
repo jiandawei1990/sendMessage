@@ -1,5 +1,7 @@
 package com.gmcc.yzcardmessage.util;
 
+import org.springframework.context.annotation.Primary;
+
 import java.io.*;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -283,7 +285,7 @@ public class HttpUtil {
         }
         return result;
     }   
-    
+
 	public static String sendPostgb2312(String url, Map<String, String> parameters) {
 		setTimeOutTime();
 		String result = "";// 返回的结果
@@ -987,5 +989,10 @@ public class HttpUtil {
             }
         }
         return result;
-    }  
+    }
+
+
+
+
+
 }

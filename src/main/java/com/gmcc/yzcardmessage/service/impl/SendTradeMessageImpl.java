@@ -44,7 +44,7 @@ public class SendTradeMessageImpl implements SendTradeMessage {
     public void sendGongAnTradeMessage() throws Exception{
         logger.info("主数据库进行传输");
 
-        boolean isRunning = true;
+        boolean  isRunning = true;
         List<String> idList = new ArrayList<>();
 
         while (isRunning) {  //发送数据
@@ -52,15 +52,13 @@ public class SendTradeMessageImpl implements SendTradeMessage {
             List<AccountWallet> accountWalletList = typicalTradeInfoService.getTradeInfo();
             logger.info("本次记录待发送条数:"+accountWalletList.size());
 
-            //如果没有数据的话，10秒后在进行数据处理
+            //如果没有数据的话，5秒后在进行数据处理
             if(accountWalletList.size()==0){
-                Thread.sleep(10000);
+                Thread.sleep(5000);
             }
 
           // 保持有数据的情况下发送数据
             if (accountWalletList.size() > 0) {
-
-
                 for (AccountWallet accountWallet : accountWalletList) {
                     Map<String, Object> sendMap = new HashMap<String,Object>();
                     //消费时间
@@ -80,9 +78,6 @@ public class SendTradeMessageImpl implements SendTradeMessage {
                     String Transat_Type = accountWallet.getTransatType().toString();
 
                     sendMap.put("driverCardNo",  accountWallet.getDeviceCardNo());    //驾驶员卡号
-
-
-
                         //乘车人卡号(01是正常卡  07是交通部卡)
 //                        if (accountWallet.getCardCategory().equals("01")) {
 //                            sendMap.put("cardNo", cityCode + SHA256SignUtil.covert(accountWallet.getCardNo()));
@@ -96,8 +91,19 @@ public class SendTradeMessageImpl implements SendTradeMessage {
                     //直接获取卡号
                     sendMap.put("cardNo", accountWallet.getCardNo());
 
+                    //上站点
+                    sendMap.put("startStationName",accountWallet.getStartStationName());
+                    //下站点
+                    sendMap.put("endStationName",accountWallet.getEndStationName());
+
                     //consumeType：       脱机闪付 电子现金卡    unionCardPay      银联云闪付      unionPay   银联联机二维码    unionAppPay  银联脱机二维码 unionCodePay  支付宝二维码 alipayCode  云雷二维码 ： yunleiCodePay    实体卡：busCard
                     sendMap.put("consumeType",accountWallet.getTransatType());
+
+                    //卡类型
+                    sendMap.put("cardType",accountWallet.getCardType());
+
+                    //卡名称
+                    sendMap.put("cardTypeName",accountWallet.getCardTypeName());
 
                     // 生成签名
                     byte[] sign256 = SHA256SignUtil.sign256(JSON.toJSONString(sendMap));
@@ -113,15 +119,13 @@ public class SendTradeMessageImpl implements SendTradeMessage {
                         logger.info("返回的结果为：" + result);
                     } catch (IOException e) {
                         e.printStackTrace();
-
                     }
-
                     if(result!="") {
                         Map<String, Object> resultMap = JSON.parseObject(result);
 
-                            //判断是是否接受成功
-                            JSONObject jsonObject = JSONObject.parseObject(resultMap.get("msgheader").toString());
-                            if (jsonObject.get("result").toString().equals("0000")) {
+                        //判断是是否接受成功
+                        JSONObject jsonObject = JSONObject.parseObject(resultMap.get("msgheader").toString());
+                        if (jsonObject.get("result").toString().equals("0000")) {
                             idList.add(accountWallet.getId());
                         }
                     }
@@ -137,9 +141,6 @@ public class SendTradeMessageImpl implements SendTradeMessage {
             }
         }
 
-
     }
-
-
 
 }

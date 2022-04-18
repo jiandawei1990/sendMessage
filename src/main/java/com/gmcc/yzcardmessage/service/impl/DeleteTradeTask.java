@@ -21,7 +21,6 @@ public class DeleteTradeTask {
     @Autowired
     private TypicalTradeInfoService typicalTradeInfoService;
 
-
     /**
      * 删除6天前的交易数据
      */
@@ -38,8 +37,10 @@ public class DeleteTradeTask {
         logger.info("删除正式表之前的数据");
         typicalTradeInfoService.deleteTradeOldInfo();
         logger.info("定时任务执行完成");
-
-
     }
+
+
+
+
 
 }

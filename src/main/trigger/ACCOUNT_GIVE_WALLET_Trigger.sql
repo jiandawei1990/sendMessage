@@ -97,3 +97,37 @@ SELECT [SETTLE_DATE]
 END
 
 GO
+
+
+CREATE TABLE [dbo].[Trade_Mx] (
+[id] bigint NOT NULL IDENTITY(1,1) ,
+[companyCode] varchar(20) NULL ,
+[lineCode] varchar(20) NULL ,
+[busCode] varchar(20) NULL ,
+[deviceCode] varchar(20) NULL ,
+[driverCardNo] varchar(20) NULL ,
+[cardNo] varchar(20) NULL ,
+[startStationName] varchar(10) NULL ,
+[endStationName] varchar(10) NULL ,
+[direction] varchar(10) NULL ,
+[consumeType] varchar(10) NULL ,
+[transactTime] varchar(30) NULL ,
+[insertDate] datetime NULL ,
+[FINISH] char(1) NULL ,
+[FINISH_TIME] datetime NULL
+)
+
+
+GO
+DBCC CHECKIDENT(N'[dbo].[Trade_Mx]', RESEED, 3071)
+GO
+
+-- ----------------------------
+-- Indexes structure for table Trade_Mx
+-- ----------------------------
+
+-- ----------------------------
+-- Primary Key structure for table Trade_Mx
+-- ----------------------------
+ALTER TABLE [dbo].[Trade_Mx] ADD PRIMARY KEY ([id])
+GO

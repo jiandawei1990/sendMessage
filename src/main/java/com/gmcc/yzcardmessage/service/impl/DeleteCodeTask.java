@@ -37,8 +37,6 @@ public class DeleteCodeTask {
         logger.info("删除正式表之前的数据");
         codeTradeInfoService.deleteTradeOldInfo();
         logger.info("定时任务执行完成");
-
-
     }
 
 
