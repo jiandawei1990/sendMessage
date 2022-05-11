@@ -4,11 +4,14 @@
 
 
     <!-- 两张表的数据同时插入一张表中 ACCOUNT_GIVE_WALLET_gongan  -->
-    <select id="getTradeInfo" resultType="com.gmcc.yzcardmessage.entity.AccountWallet">
+    <select id="getTradeInfo" resultType="com.gmcc.yzcardmessage.entity.AccountWallet" timeout="300000">
        <!--每次查询2000条记录   -->
-        SELECT  top 1000  cardNo  AS cardNo,transactTime AS transactTime,companyCode AS companyCode,lineCode AS lineCode,busCode AS busCode, driverCardNo  AS deviceCardNo,deviceCode AS deviceCode,id AS id,   consumeType   as  transatType, startStationName as startStationName, endStationName as  endStationName from Trade_Mx
+        SELECT  top 1000  cardNo  AS cardNo,transactTime AS transactTime,companyCode AS companyCode,lineCode AS lineCode,busCode AS busCode, driverCardNo  AS deviceCardNo,deviceCode AS deviceCode,id AS id,   consumeType   as  transatType, startStationName as startStationName, endStationName as  endStationName,a.cardType as cardType, '' as cardTypeName
+        from Trade_Mx a
+        --left join [192.168.50.10].ICCard_LiaoCheng.dbo.view_card_type b on a.cardType = b.codeValue
         where FINISH = 0
     </select>
+
 
     <!-- 如果上传成功,更新标志位 -->
    <update id="updateTradeFlag" >
@@ -22,24 +25,24 @@
 
     <!--车辆机具映射关系-->
     <select id="getVechileDeviceMappingData"  resultType="com.gmcc.yzcardmessage.entity.PosBusinfo">
-        SELECT posmachineCode,busCode, busName
-        FROM view_bus_device
+        SELECT posmachineCode,busCode, (case when busName is null then '0' else busName end) busName
+        FROM [192.168.50.10].ICCard_LiaoCheng.dbo.view_bus_device
     </select>
 
     <!--车载机线路映射关系-->
     <select id="getDeviceRouteMappingData"  resultType="com.gmcc.yzcardmessage.entity.BusLineinfo">
           SELECT lineName,lineCode,posmachineCode
-          FROM view_route_device
+          FROM  [192.168.50.10].ICCard_LiaoCheng.dbo.view_route_device
     </select>
 
     <!-- 车辆信息-->
     <select id="getVechileInfoData"  resultType="com.gmcc.yzcardmessage.entity.Businfo">
      SELECT busName,busCode
-     FROM view_bus_info
+     FROM [192.168.50.10].ICCard_LiaoCheng.dbo.view_bus_info
     </select>
 
 <!--   主表历史数据插入到Bak-->
-    <insert id="insertTradeInfo" >
+    <insert id="insertTradeInfo">
       insert  into Trade_MxBak
       select * from Trade_Mx
       where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
