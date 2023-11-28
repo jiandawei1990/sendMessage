@@ -9,18 +9,53 @@ public class RqFun {
 
     public static void main(String[] args) {
 
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date d1= null;
-        Date d2= null;
-//        String name="chart";
-//        System.out.println(name.charAt(0));
-        try {
-            d1 = sdf.parse("2021-04-24 10:10:10");
-            d2 = sdf.parse("2021-08-02 10:10:10");
-            System.out.println(daysBetween(d1,d2));
-        } catch (ParseException e) {
-            e.printStackTrace();
+        String s = "a"+ new String("b");
+
+        new String("b");
+        StringBuilder s2 = new StringBuilder();
+        s2.append("q").append(new String("b"));
+
+        System.out.println(s);
+
+        int num = 8;
+        int c=1000;
+
+
+        int a=20;
+
+        if(num<10){
+
+            if(a==0){
+               String tmp="3号";
+            }
+            a--;
         }
+
+        //System.out.println(int("123"));
+//        System.out.println((int)(Math.random())*5);
+//        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date d1= null;
+//        Date d2= null;
+////        String name="chart";
+////        System.out.println(name.charAt(0));
+//
+//        Date date = new Date();
+//        int hours = date.getHours();
+//
+//        int minute = (int) date.getMinutes();
+//        int seconds =(int)date.getSeconds();
+//
+//        System.out.println(String.valueOf(seconds));
+//        System.out.println(String.valueOf(hours));
+//        System.out.println(String.valueOf(minute));
+//
+//        try {
+//            d1 = sdf.parse("2021-05-09 10:10:10");
+//            d2 = sdf.parse("2021-05-20 10:10:10");
+//            System.out.println(daysBetween(d1,d2));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
@@ -63,6 +98,19 @@ public class RqFun {
         long between_day = (time2-time1)/(1000*3600*24);
         return  Integer.parseInt(String.valueOf(between_day));
     }
+
+   public static  int dayBetweenData2(Date smdate,Date bddate) throws  ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        smdate = sdf.parse(sdf.format(smdate));
+        bddate = sdf.parse(sdf.format(bddate));
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(smdate);
+        long time1 = cal.getTimeInMillis();
+        cal.setTime(bddate);
+        long time2 = cal.getTimeInMillis();
+        long between_day = (time2-time1)/(1000*3600*24);
+        return Integer.parseInt(String.valueOf(between_day));
+   }
 
 
     public static int daysBetweenData1(Date smdate,Date bddate) throws ParseException{

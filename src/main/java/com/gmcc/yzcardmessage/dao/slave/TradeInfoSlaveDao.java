@@ -27,10 +27,7 @@ public interface TradeInfoSlaveDao{
     //昨天之前的数据转储到Bak表
     public  void insertTradeInfo();
 
-
     //删除主表历史数据
     public void deleteTradeOldInfo();
-
-
 
 }

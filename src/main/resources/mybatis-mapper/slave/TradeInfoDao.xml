@@ -3,11 +3,17 @@
 <mapper namespace="com.gmcc.yzcardmessage.dao.slave.TradeInfoSlaveDao">
 
     <!-- 两张表的数据同时插入一张表中 ACCOUNT_GIVE_WALLET_gongan  -->
+<!--    <select id="getTradeInfo" resultType="com.gmcc.yzcardmessage.entity.AccountWallet">-->
+<!--       &lt;!&ndash;每次查询2000条记录   &ndash;&gt;-->
+<!--        SELECT  top 1000  a.cardNo  AS cardNo,a.transactTime AS transactTime,a.companyCode AS companyCode,a.lineCode AS lineCode,a.busCode AS busCode, a.driverCardNo  AS deviceCardNo,a.deviceCode AS deviceCode,a.id AS id,   a.consumeType   as  transatType,a.startStationName as startStationName, a.endStationName as  endStationName, '' as cardType, '' as cardTypeName  from Trade_MxTwo a-->
+<!--        left join [192.168.50.10].ICCard_LiaoCheng.dbo.view_card_type b on a.cardType = b.codeValue-->
+<!--        where a.FINISH = 0-->
+<!--    </select>-->
+
     <select id="getTradeInfo" resultType="com.gmcc.yzcardmessage.entity.AccountWallet">
-       <!--每次查询2000条记录   -->
-        SELECT  top 1000  a.cardNo  AS cardNo,a.transactTime AS transactTime,a.companyCode AS companyCode,a.lineCode AS lineCode,a.busCode AS busCode, a.driverCardNo  AS deviceCardNo,a.deviceCode AS deviceCode,a.id AS id,   a.consumeType   as  transatType,a.startStationName as startStationName, a.endStationName as  endStationName, '' as cardType, '' as cardTypeName  from Trade_MxTwo a
-        --left join CardType_Info  b on a.cardType = b.codeValue
-        where a.FINISH = 0
+        <!--每次查询2000条记录   -->
+        SELECT  top 1000  cardNo  AS cardNo,transactTime AS transactTime,companyCode AS companyCode,lineCode AS lineCode,busCode AS busCode, driverCardNo  AS deviceCardNo,deviceCode AS deviceCode,id AS id,   consumeType   as  transatType, startStationName as startStationName, endStationName as  endStationName from Trade_Mx
+        where FINISH = 1
     </select>
 
     <!-- 如果上传成功,更新标志位 -->

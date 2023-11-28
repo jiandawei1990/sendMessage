@@ -28,19 +28,23 @@ public class DeleteTradeTask {
     public void deleteTradeBeforeWeekData(){
         logger.info("主数据库定时任务");
         logger.info("开始执行定时任务:");
+//        logger.info("开始执行删除6天数据的定时任务");
+//        typicalTradeInfoService.deleteAlipayTradeInfo();
+//
+//        logger.info("数据转储到Bak表");
+//        typicalTradeInfoService.insertAlipayTradeInfo();
+
+//        logger.info("删除正式表之前的数据");
+//        typicalTradeInfoService.deleteAlipayTradeOldInfo();
         logger.info("开始执行删除6天数据的定时任务");
-        typicalTradeInfoService.deleteTradeInfo();
+        typicalTradeInfoService.deleteQrtTradeInfo();
 
         logger.info("数据转储到Bak表");
-        typicalTradeInfoService.insertTradeInfo();
+        typicalTradeInfoService.insertQrtTradeInfo();
 
         logger.info("删除正式表之前的数据");
-        typicalTradeInfoService.deleteTradeOldInfo();
+        typicalTradeInfoService.deleteQrtTradeOldInfo();
         logger.info("定时任务执行完成");
     }
-
-
-
-
 
 }

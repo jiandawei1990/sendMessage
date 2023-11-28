@@ -15,7 +15,7 @@ import java.util.Map;
  * @author landa
  *
  */
-public class HttpUtil {
+public class HttpUtil{
 	/**
 	 * 发送GET请求
 	 * 

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 二维码数据
  */
-public interface CodeTradeInfoService {
+public interface CodeTradeInfoService{
 
     //获取二维码交易数据每次2000条
     public List<AccountWallet> getTradeInfo();

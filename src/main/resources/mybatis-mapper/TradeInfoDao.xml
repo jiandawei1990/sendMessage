@@ -39,5 +39,4 @@
         where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
     </delete>
 
-
 </mapper>

@@ -1,5 +1,6 @@
 package com.gmcc.yzcardmessage.util;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.test.context.jdbc.Sql;
 
 import javax.sql.DataSource;
 
@@ -49,8 +51,5 @@ public class DataSourceConfig2 {
     {
         return new SqlSessionTemplate(sessionFactory);
     }
-
-
-
 
 }

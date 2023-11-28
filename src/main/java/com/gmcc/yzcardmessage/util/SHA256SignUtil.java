@@ -25,7 +25,6 @@ public class SHA256SignUtil {
     public static final int KEY_SIZE = 2048;
 
 
-
     public static void main(String[] args) throws InvalidKeyException,
             NoSuchAlgorithmException, InvalidKeySpecException,
             SignatureException, UnsupportedEncodingException {
@@ -34,7 +33,6 @@ public class SHA256SignUtil {
         // 待签名内容
         Map<String, Object> map = new HashMap<String,Object>();
 //        map.put("transactTime", "20201225111022");
-
 //        map.put("branchCompany", "扬州");
 //        map.put("lineCode", "123");
 //        map.put("busCode", "123");
@@ -53,7 +51,7 @@ public class SHA256SignUtil {
         map.put("consumeType", "busCard");
         map.put("cardNo", "12228700");
 
-        //        map.put("xinpianka","abc-123");
+        //   map.put("xinpianka","abc-123");
        //    map.put("consumeType", "123");
         // 签名
         byte[] sign256 = sign256(JSON.toJSONString(map));
@@ -82,8 +80,6 @@ public class SHA256SignUtil {
         signature.update(data.getBytes(ENCODING));
         return signature.sign();
     }
-
-
 
     /**
      * SHA256WithRSA 验证签名
@@ -198,6 +194,42 @@ public class SHA256SignUtil {
         }
         return number;
     }
+
+    public static int covertInfo(String content2){
+        int number = 2;
+        String [] HighLetter = {"A","B","C","D","E","F"};
+        Map<String,Integer> map = new HashMap<>();
+        for(int i=0; i<=9;i++){
+            map.put(i+"",i);
+        }
+        for(int j=10;j<HighLetter.length+10;j++){
+            map.put(HighLetter[j-10],j);
+        }
+
+        for(int i=0; i<=9;i++){
+            map.put(i+"",i);
+        }
+        return  number;
+    }
+
+   public static int covertNumber(String content5){
+        int number = 0;
+        String [] HighLetter = {"A","B","C","D","E","F"};
+        Map<String,Integer>  map = new HashMap<>();
+        for(int i = 0; i <=9;i++){
+            map.put(i+"",i);
+        }
+        for(int j=10; j<HighLetter.length+10;j++){
+            map.put(HighLetter[j-10],j);
+        }
+        for(int i=0; i <=9; i++){
+            map.put(i+"",i);
+        }
+       return  number;
+   }
+
+
+
 
     public static int covertTmp(String content1){
         int number = 0;

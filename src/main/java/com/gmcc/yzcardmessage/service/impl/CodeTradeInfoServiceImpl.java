@@ -13,8 +13,8 @@ public class CodeTradeInfoServiceImpl implements CodeTradeInfoService {
     @Autowired
     TradeInfoSlaveDao tradeInfoSlaveDao;
 
-//    @Override
-    public List<AccountWallet> getTradeInfo() {
+    @Override
+    public List<AccountWallet> getTradeInfo(){
         return tradeInfoSlaveDao.getTradeInfo();
     }
 
@@ -37,6 +37,5 @@ public class CodeTradeInfoServiceImpl implements CodeTradeInfoService {
     public void deleteTradeOldInfo() {
         tradeInfoSlaveDao.deleteTradeOldInfo();
     }
-
 
 }

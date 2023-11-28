@@ -1,5 +1,4 @@
 package com.gmcc.yzcardmessage;
-
 import com.gmcc.yzcardmessage.service.SendCodeMessage;
 import com.gmcc.yzcardmessage.service.SendKafkaMessageService;
 import com.gmcc.yzcardmessage.service.SendTradeMessage;
@@ -22,28 +21,27 @@ public class YzcardmessageApplication implements CommandLineRunner {
     @Autowired
 	SendCodeMessage sendCodeMessage;
 
-//    @Autowired
-//	SendKafkaMessageService sendKafkaMessageService;
-
+    @Autowired
+	SendKafkaMessageService sendKafkaMessageService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(YzcardmessageApplication.class, args);
 	}
 
-
 	@Override
 	public void run(String... args) throws Exception {
-		// ExecutorService service =  Executors.newFixedThreadPool (2);
+	//	 ExecutorService service =  Executors.newFixedThreadPool (2);
 		//自定义的线程池避免阻塞情况
 		ExecutorService service =  new ThreadPoolExecutor(2,3,60L, TimeUnit.SECONDS,new ArrayBlockingQueue<>(10));
 		//循环发送实体卡消息数据
-//		service.execute(() -> {
-//			try {
-//				sendTradeMessage.sendGongAnTradeMessage();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		});
+		service.execute(() -> {
+			try {
+				sendTradeMessage.sendQrtForAlipayTradeMessage();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+
 		//循环发送二维码数据
 //		service.execute(new Runnable() {
 //			@Override

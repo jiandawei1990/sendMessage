@@ -6,12 +6,24 @@
     <!-- 两张表的数据同时插入一张表中 ACCOUNT_GIVE_WALLET_gongan  -->
     <select id="getTradeInfo" resultType="com.gmcc.yzcardmessage.entity.AccountWallet" timeout="300000">
        <!--每次查询2000条记录   -->
-        SELECT  top 1000  cardNo  AS cardNo,transactTime AS transactTime,companyCode AS companyCode,lineCode AS lineCode,busCode AS busCode, driverCardNo  AS deviceCardNo,deviceCode AS deviceCode,id AS id,   consumeType   as  transatType, startStationName as startStationName, endStationName as  endStationName,a.cardType as cardType, '' as cardTypeName
+        SELECT  top 1000  cardNo  AS cardNo,transactTime AS transactTime,companyCode AS companyCode,lineCode AS lineCode,busCode AS busCode, driverCardNo  AS deviceCardNo,deviceCode AS deviceCode,id AS id,   consumeType   as  transatType, startStationName as startStationName, endStationName as  endStationName,a.cardType as cardType, b.namecn as cardTypeName
+        ,convert(decimal(8,2),transact_Amount/100) transactAmount,convert(decimal(8,2),ORIGINAL_amount/100)  castCoinAmount
         from Trade_Mx a
-        --left join [192.168.50.10].ICCard_LiaoCheng.dbo.view_card_type b on a.cardType = b.codeValue
+        left join [192.168.50.10].ICCard_LiaoCheng.dbo.view_card_type b on a.cardType = b.codeValue
         where FINISH = 0
     </select>
 
+    <select id="getAlipayTradeInfo" resultType="com.gmcc.yzcardmessage.entity.AccountWallet">
+        <!--每次查询2000条记录   -->
+        SELECT  top 1000  cardNo  AS cardNo,convert(varchar(19),transactTime,20) AS transactTime,companyCode AS companyCode,lineCode AS lineCode,busCode AS busCode, driverCardNo  AS deviceCardNo,deviceCode AS deviceCode,id AS id,   consumeType   as  transatType, startStationName as startStationName, endStationName as  endStationName, cardType as cardType from Trade_MxTwo
+        where FINISH = 0
+    </select>
+
+    <select id="getQrtTradeInfo" resultType="com.gmcc.yzcardmessage.entity.AccountWallet">
+        <!--每次查询2000条记录   -->
+        SELECT  top 1000  cardNo  AS cardNo,convert(varchar(19),transactTime,20) AS transactTime,companyCode AS companyCode,lineCode AS lineCode,busCode AS busCode, driverCardNo  AS deviceCardNo,deviceCode AS deviceCode,id AS id,   consumeType   as  transatType, startStationName as startStationName, endStationName as  endStationName, cardType as cardType from Trade_Qrt
+        where FINISH = 0
+    </select>
 
     <!-- 如果上传成功,更新标志位 -->
    <update id="updateTradeFlag" >
@@ -22,6 +34,26 @@
            #{item}
        </foreach>
    </update>
+
+    <!-- 如果上传成功,更新标志位 -->
+    <update id="updateAlipayTradeFlag" >
+        update Trade_MxTwo
+        set FINISH=1,FINISH_TIME=getdate()
+        WHERE id in
+        <foreach collection="idList" item="item" open="(" close=")" separator="," >
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 如果上传成功,更新标志位 -->
+    <update id="updateQrtTradeFlag" >
+        update Trade_Qrt
+        set FINISH=1,FINISH_TIME=getdate()
+        WHERE id in
+        <foreach collection="idList" item="item" open="(" close=")" separator="," >
+            #{item}
+        </foreach>
+    </update>
 
     <!--车辆机具映射关系-->
     <select id="getVechileDeviceMappingData"  resultType="com.gmcc.yzcardmessage.entity.PosBusinfo">
@@ -55,6 +87,40 @@
 
     <delete id="deleteTradeOldInfo">
         delete from Trade_Mx
+        where  FINISH = '1' and convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
+    </delete>
+
+    <!--   Alipay主表历史数据插入到Bak-->
+    <insert id="insertAlipayTradeInfo">
+      insert  into Trade_MxTwoBAK
+      select * from Trade_MxTwo
+      where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
+    </insert>
+
+    <delete id="deleteAlipayTradeInfo">
+        delete from Trade_MxTwoBAK
+        where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,DATEADD(d, DATEDIFF(d,0,getdate()), -7),23)
+    </delete>
+
+    <delete id="deleteAlipayTradeOldInfo">
+        delete from Trade_MxTwo
+        where  FINISH = '1' and convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
+    </delete>
+
+    <!--   Qrt主表历史数据插入到Bak-->
+    <insert id="insertQrtTradeInfo">
+      insert  into Trade_QrtBAK
+      select * from Trade_Qrt
+      where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
+    </insert>
+
+    <delete id="deleteQrtTradeInfo">
+        delete from Trade_QrtBAK
+        where  FINISH = '1' and   convert(varchar,FINISH_TIME,23) &lt; convert(varchar,DATEADD(d, DATEDIFF(d,0,getdate()), -7),23)
+    </delete>
+
+    <delete id="deleteQrtTradeOldInfo">
+        delete from Trade_Qrt
         where  FINISH = '1' and convert(varchar,FINISH_TIME,23) &lt; convert(varchar,getdate(),23)
     </delete>
 

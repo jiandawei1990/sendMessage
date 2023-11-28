@@ -14,13 +14,33 @@ public class TypicalTradeInfoServiceImpl implements TypicalTradeInfoService {
     @Autowired
     TradeInfoMasterDao tradeInfoMasterDao;
     @Override
-    public List<AccountWallet> getTradeInfo() {
+    public List<AccountWallet> getTradeInfo(){
         return tradeInfoMasterDao.getTradeInfo();
+    }
+
+    @Override
+    public List<AccountWallet> getAlipayTradeInfo(){
+        return tradeInfoMasterDao.getAlipayTradeInfo();
+    }
+
+    @Override
+    public List<AccountWallet> getQrtTradeInfo(){
+        return tradeInfoMasterDao.getQrtTradeInfo();
     }
 
     @Override
     public void updateTradeFlag(List<String> idList) {
         tradeInfoMasterDao.updateTradeFlag(idList);
+    }
+
+    @Override
+    public void updateAlipayTradeFlag(List<String> idList) {
+        tradeInfoMasterDao.updateAlipayTradeFlag(idList);
+    }
+
+    @Override
+    public void updateQrtTradeFlag(List<String> idList) {
+        tradeInfoMasterDao.updateQrtTradeFlag(idList);
     }
 
     @Override
@@ -36,6 +56,36 @@ public class TypicalTradeInfoServiceImpl implements TypicalTradeInfoService {
     @Override
     public void deleteTradeOldInfo() {
         tradeInfoMasterDao.deleteTradeOldInfo();
+    }
+
+    @Override
+    public void deleteAlipayTradeInfo() {
+        tradeInfoMasterDao.deleteAlipayTradeInfo();
+    }
+
+    @Override
+    public void insertAlipayTradeInfo() {
+        tradeInfoMasterDao.insertAlipayTradeInfo();
+    }
+
+    @Override
+    public void deleteAlipayTradeOldInfo() {
+        tradeInfoMasterDao.deleteAlipayTradeOldInfo();
+    }
+
+    @Override
+    public void deleteQrtTradeInfo() {
+        tradeInfoMasterDao.deleteQrtTradeInfo();
+    }
+
+    @Override
+    public void insertQrtTradeInfo() {
+        tradeInfoMasterDao.insertQrtTradeInfo();
+    }
+
+    @Override
+    public void deleteQrtTradeOldInfo() {
+        tradeInfoMasterDao.deleteQrtTradeOldInfo();
     }
 
 }

@@ -32,11 +32,20 @@ public class BusMessageSynTaskImpl{
 
     private static  int sum = 200;
 
-    @Value("${send.url1}")
-    private  String sendUrl;
+    @Value("${send.device.url}")
+    private  String sendDeviceUrl;
+
+    @Value("${send.route.url}")
+    private  String sendRouteUrl;
+
+    @Value("${send.car.url}")
+    private  String sendCarUrl;
 
     private static Logger logger = LoggerFactory.getLogger(BusMessageSynTaskImpl.class);
 
+
+
+    //发送车载机基础数据
     @Scheduled(cron = "${generator.BusMessageSyn.quartzConfiguration.cronExpression}")
     public void BusInfoSendData() throws Exception{
 
@@ -49,36 +58,7 @@ public class BusMessageSynTaskImpl{
             //车辆信息
             sendVechileInfoData();
 
-//        //开启两个线程,根据奇数或偶数发送IC卡数据
-//        for(int i=0;i<threadCount;i++) {
-//
-//            int num = i;
-//            Thread sendThread = new Thread(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    try {
-//                        while(true){
-//                            List<Cardinfo> list = getIcCardData(num);
-//                            //如果数据为空跳出循环
-//                            if(list.size() ==0){
-//                                break;
-//                            }
-//                            //如果有数据,调用发送接口
-//                            setSendIcCardData(list);
-//                             Thread.sleep(900);
-//                        }
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            });
-//            sendThread.setName("发送IC卡数据");
-//            sendThread.start();
-//        }
-
     }
-
 
     /**
      * 车辆机具映射关系
@@ -89,7 +69,7 @@ public class BusMessageSynTaskImpl{
 
         List<PosBusinfo> list =  messageSynService.getVechileDeviceMappingData();
 
-        List<String> idList = new ArrayList<>();
+        int num=0;
 
         for(PosBusinfo posBusinfo : list){
             Map<String, Object> sendMap = new HashMap<String, Object>();
@@ -104,7 +84,7 @@ public class BusMessageSynTaskImpl{
             sendMap.put("sign", sign);
             String result = "";
             try {
-                result = HttpUtil.sendPostForGongAn(sendUrl, sendMap);
+                result = HttpUtil.sendPostForGongAn(sendDeviceUrl, sendMap);
                 logger.info("发送数据:\n" + sendMap);
                 logger.info("返回的结果为：" + result);
             } catch (IOException e) {
@@ -118,16 +98,13 @@ public class BusMessageSynTaskImpl{
                 //判断是是否接受成功
                 JSONObject jsonObject = JSONObject.parseObject(resultMap.get("msgheader").toString());
                 if (jsonObject.get("result").toString().equals("0000")) {
-                    idList.add(posBusinfo.getPosmachineCode());
+                    num++;
                 }
             }
         }
-        if(idList.size()>0){
-            //   messageSynService.updateCardInfoFlag(idList);
-            logger.info("本次完成上送的条数:" + idList.size());
-            //插入完成之后,清空List数据
-            idList.clear();
-        }
+
+        logger.info("本次车辆机具完成上送的条数:" + num);
+        list.clear();
             return 0;
     }
 
@@ -138,9 +115,7 @@ public class BusMessageSynTaskImpl{
      */
     private int sendDeviceRouteMappingData() throws  Exception{
         List<BusLineinfo> list =  messageSynService.getDeviceRouteMappingData();
-
-        List<String> idList = new ArrayList<>();
-
+        int num=0;
         for(BusLineinfo busLineinfo : list){
             Map<String, Object> sendMap = new HashMap<String, Object>();
             sendMap.put("lineName", busLineinfo.getLineName());
@@ -155,7 +130,7 @@ public class BusMessageSynTaskImpl{
 
             String result = "";
             try {
-                result = HttpUtil.sendPostForGongAn(sendUrl, sendMap);
+                result = HttpUtil.sendPostForGongAn(sendRouteUrl, sendMap);
                 logger.info("发送数据:\n" + sendMap);
                 logger.info("返回的结果为：" + result);
             } catch (IOException e) {
@@ -168,18 +143,15 @@ public class BusMessageSynTaskImpl{
                 //判断是是否接受成功
                 JSONObject jsonObject = JSONObject.parseObject(resultMap.get("msgheader").toString());
                 if (jsonObject.get("result").toString().equals("0000")) {
-                    idList.add(busLineinfo.getPosmachineCode());
+                    num++;
                 }
             }
         }
 
         //更新发送成功的的设备信息
-        if (idList.size() > 0) {
-            //   messageSynService.updateCardInfoFlag(idList);
-            logger.info("本次完成上送的条数:" + idList.size());
-            //插入完成之后,清空List数据
-            idList.clear();
-        }
+
+        logger.info("本次车载机线路完成上送的条数:" + num);
+        list.clear();
         return  0;
     }
 
@@ -193,7 +165,7 @@ public class BusMessageSynTaskImpl{
 
         List<Businfo>   BusinfoList = messageSynService.getVechileInfoData();
 
-        List<String> idList = new ArrayList<>();
+        int num = 0;
 
         for (Businfo businfo : BusinfoList) {
             Map<String, Object> sendMap = new HashMap<String, Object>();
@@ -208,7 +180,7 @@ public class BusMessageSynTaskImpl{
 
             String result = "";
             try {
-                result = HttpUtil.sendPostForGongAn(sendUrl, sendMap);
+                result = HttpUtil.sendPostForGongAn(sendCarUrl, sendMap);
                 logger.info("发送数据:\n" + sendMap);
                 logger.info("返回的结果为：" + result);
             } catch (IOException e) {
@@ -222,20 +194,15 @@ public class BusMessageSynTaskImpl{
                 //判断是是否接受成功
                 JSONObject jsonObject = JSONObject.parseObject(resultMap.get("msgheader").toString());
                 if (jsonObject.get("result").toString().equals("0000")) {
-                    idList.add(businfo.getBusCode());
+                    num++;
                 }
             }
         }
-            //更新所有发送成功的记录
-            if (idList.size() > 0) {
-             //   messageSynService.updateCardInfoFlag(idList);
-                logger.info("本次完成上送的条数:" + idList.size());
-                //插入完成之后,清空List数据
-                idList.clear();
-            }
+
+        logger.info("本次车辆信息完成上送的条数:" + num);
+        BusinfoList.clear();
         return 0;
     }
-
 
     /**
      * 查询IC 卡数据
@@ -246,7 +213,6 @@ public class BusMessageSynTaskImpl{
        List<Cardinfo>  list=  messageSynService.getIcCardData(num);
         return list;
     }
-
 
     /**
      * 发送IC卡数据
@@ -271,7 +237,7 @@ public class BusMessageSynTaskImpl{
 
             String result = "";
             try {
-                result = HttpUtil.sendPostForGongAn(sendUrl, sendMap);
+                result = HttpUtil.sendPostForGongAn(sendCarUrl, sendMap);
                 logger.info("发送数据:\n" + sendMap);
                 logger.info("返回的结果为：" + result);
             } catch (IOException e) {

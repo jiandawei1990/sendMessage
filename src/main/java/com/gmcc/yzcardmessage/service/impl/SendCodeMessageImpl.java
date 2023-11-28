@@ -82,7 +82,6 @@ public class SendCodeMessageImpl implements SendCodeMessage {
                         sendMap.put("endStationName",accountWallet.getEndStationName());//消费类型 qrcode 二维码 busCard 实体卡 unionpay 云闪付 支付宝
                         sendMap.put("consumeType",accountWallet.getTransatType());
 
-
                         // 生成签名
                         byte[] sign256 = SHA256SignUtil.sign256(JSON.toJSONString(sendMap));
                         String sign = SHA256SignUtil.encodeBase64(sign256);
